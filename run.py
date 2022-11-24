@@ -78,3 +78,10 @@ class Board:
             return OUTCOMES[0]
         else:
             return OUTCOMES[1]
+
+
+def random_coordinate(size):
+    """
+    Helper function returning a random integer between 0 and (board) size.
+    """
+    return randint(0, size - 1)
