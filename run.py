@@ -3,7 +3,7 @@ Simplified version of 'Battleship' (game),
 running in the terminal and featuring 1x1-sized ships.
 """
 
-# Importing of methods from modules:
+# Methods imported from modules:
 from string import ascii_uppercase
 from random import randint
 
@@ -45,7 +45,7 @@ class Board:
     def print_board(self):
         """
         Board is printed by writing columns first.
-        Then, each row number is followed by board rows.
+        Then, each row number is followed by a board row.
         """
         print(self.columns_string)
         row_number = 0
@@ -57,7 +57,7 @@ class Board:
     def add_ship(self, row, column):
         """
         It assignes the ships list by appending tuples-based coordinates.
-        Ships on players' boards are made visible by using distinctive markers.
+        Ships on player's board are made visible by using distinctive markers.
         """
         self.ships.append((row, column))
 
@@ -66,9 +66,9 @@ class Board:
 
     def add_guess(self, row, column):
         """
-        It assignes the guesses list by appending tuples-based coordinates. It
-        then marks the boards based on the match between a guess and the
-        actual ship position. Finally, it returns an outcome.
+        It assigns the guesses list by appending tuples-based coordinates.
+        It then marks the boards based on the match between an opponent guess
+        and the actual ship position. Finally, it returns an outcome.
         """
         self.guesses.append((row, column))
         self.board[row][column] = 'x'
@@ -80,8 +80,26 @@ class Board:
             return OUTCOMES[1]
 
 
+# Helper function returning a random integer between 0 and (board) size:
 def random_coordinate(size):
     """
-    Helper function returning a random integer between 0 and (board) size.
+    It generates a random coordinate by leveraging the 'randint()' method.
     """
     return randint(0, size - 1)
+
+
+# Function randomly populating boards:
+def populate_board(board_instance):
+    """
+    It leverages the helper function 'random_coordinate()',
+    by also ensuring that any assignment to the ships list is unique.
+    """
+    for i in range(board_instance.fleet):
+        row, column = random_coordinate(
+            board_instance.size), random_coordinate(board_instance.size)
+
+        while (row, column) in board_instance.ships:
+            row, column = random_coordinate(
+                board_instance.size), random_coordinate(board_instance.size)
+
+        board_instance.add_ship(row, column)
