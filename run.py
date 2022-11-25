@@ -95,11 +95,66 @@ def populate_map(instance):
     by also ensuring that any assignment to the ships list is unique.
     """
     for i in range(instance.fleet):
-        row, column = randomize(instance.size),
-        randomize(instance.size)
+        row, column = randomize(instance.size), randomize(instance.size)
 
         while (row, column) in instance.ships:
-            row, column = randomize(instance.size),
-            randomize(board_instance.size)
+            row, column = randomize(instance.size), randomize(instance.size)
 
         instance.add_ship(row, column)
+
+
+# Function handling guesses, accepting a board-instance as a parameter:
+def make_guess(instance):
+    """
+    It handles player's and computer's guesses respectively.
+    It leverages the validation function 'validate_guess()'.
+    It then provides a written feedback about the guesses outcomes.
+    """
+    # Player block:
+    if instance.owner == 'computer':
+
+        while True:
+            row = input(
+                f'Guess a row between 0 and {instance.size - 1}: ')
+            column = input(
+                f'Guess a column between A and '
+                f'{list(instance.columns_dictionary)[-1]}: ').upper()
+
+            if validate_guess(row, column, instance):
+                break
+
+        player_result = instance.add_guess(
+            int(row), instance.columns_dictionary[column])
+
+        print('-' * 34)
+        print(f'You guessed: {(int(row), column)}')
+
+        if player_result == OUTCOMES[0]:
+            print('You got a hit!')
+            SCORES['player'] += 1
+        else:
+            print('You missed this time.')
+
+    # Computer block:
+    else:
+
+        row, column = randomize(instance.size), randomize(instance.size)
+
+        while (row, column) in instance.guesses:
+            row, column = randomize(instance.size), randomize(instance.size)
+
+        computer_result = instance.add_guess(row, column)
+
+        # Ancillary variables:
+        letters = list(instance.columns_dictionary.keys())
+        numbers = list(instance.columns_dictionary.values())
+        # Used in the following print-statement for better readability:
+
+        print('-' * 34)
+        print(f'Computer guessed: {(row, letters[numbers.index(column)])}')
+
+        if computer_result == OUTCOMES[0]:
+            print('Computer got a hit!')
+            SCORES['computer'] += 1
+        else:
+            print('Computer missed this time.')
