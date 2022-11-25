@@ -16,12 +16,12 @@ SCORES = {'computer': 0, 'player': 0}
 class Board:
     """
     It sets the board sizes, the number of ships (fleet),
-    the player's name and the board type (player's, computer's).
-    It has methods for printing boards (player's, computer's),
+    the player's name and the board owner (player, computer).
+    It has methods for printing maps (player's, computer's),
     adding its own ships and opponent's guesses.
     """
 
-    def __init__(self, size, fleet, name, type):
+    def __init__(self, size, fleet, name, owner):
         """
         Instance attributes:
         - 4 assigned via parameterization;
@@ -32,9 +32,9 @@ class Board:
         self.size = size
         self.fleet = fleet
         self.name = name
-        self.type = type
+        self.owner = owner
 
-        self.board = [['□' for x in range(size)] for y in range(size)]
+        self.map = [['□' for x in range(size)] for y in range(size)]
         self.columns_dictionary = dict(zip(ascii_uppercase, range(size)))
 
         self.columns_string = '  ' + ' '.join(list(self.columns_dictionary))
@@ -42,64 +42,64 @@ class Board:
         self.ships = []
         self.guesses = []
 
-    def print_board(self):
+    def print_map(self):
         """
-        Board is printed by writing columns first.
-        Then, each row number is followed by a board row.
+        Map is printed by writing columns first.
+        Then, each row number is followed by a map row.
         """
         print(self.columns_string)
         row_number = 0
 
-        for row in self.board:
+        for row in self.map:
             print(f"{row_number} {' '.join(row)}")
             row_number += 1
 
     def add_ship(self, row, column):
         """
         It assignes the ships list by appending tuples-based coordinates.
-        Ships on player's board are made visible by using distinctive markers.
+        Ships on player's map are made visible by using distinctive markers.
         """
         self.ships.append((row, column))
 
-        if self.type == 'player':
-            self.board[row][column] = '■'
+        if self.owner == 'player':
+            self.map[row][column] = '■'
 
     def add_guess(self, row, column):
         """
         It assigns the guesses list by appending tuples-based coordinates.
-        It then marks the boards based on the match between an opponent guess
+        It then marks the map based on the match between an opponent guess
         and the actual ship position. Finally, it returns an outcome.
         """
         self.guesses.append((row, column))
-        self.board[row][column] = 'x'
+        self.map[row][column] = 'x'
 
         if (row, column) in self.ships:
-            self.board[row][column] = '#'
+            self.map[row][column] = '#'
             return OUTCOMES[0]
         else:
             return OUTCOMES[1]
 
 
-# Helper function returning a random integer between 0 and (board) size:
-def random_coordinate(size):
+# Helper function returning a random integer between 0 and size:
+def randomize(size):
     """
     It generates a random coordinate by leveraging the 'randint()' method.
     """
     return randint(0, size - 1)
 
 
-# Function randomly populating boards:
-def populate_board(board_instance):
+# Function randomly populating maps, accepting a board-instance as a parameter:
+def populate_map(instance):
     """
-    It leverages the helper function 'random_coordinate()',
+    It leverages the helper function 'randomize()',
     by also ensuring that any assignment to the ships list is unique.
     """
-    for i in range(board_instance.fleet):
-        row, column = random_coordinate(
-            board_instance.size), random_coordinate(board_instance.size)
+    for i in range(instance.fleet):
+        row, column = randomize(instance.size),
+        randomize(instance.size)
 
-        while (row, column) in board_instance.ships:
-            row, column = random_coordinate(
-                board_instance.size), random_coordinate(board_instance.size)
+        while (row, column) in instance.ships:
+            row, column = randomize(instance.size),
+            randomize(board_instance.size)
 
-        board_instance.add_ship(row, column)
+        instance.add_ship(row, column)
