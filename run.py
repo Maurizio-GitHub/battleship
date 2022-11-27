@@ -3,13 +3,13 @@ Simplified version of 'Battleship' (game),
 running in the terminal and featuring 1x1-sized ships.
 """
 
-# Methods imported from modules:
+# Methods imported from built-in modules:
 from string import ascii_uppercase
 from random import randint
 
 # Global variables:
-OUTCOMES = ('Hit!', 'Miss!')
 SCORES = {'computer': 0, 'player': 0}
+OUTCOMES = {'hit': True, 'miss': False}
 
 
 # Board class, representing the parent class for boards:
@@ -26,7 +26,6 @@ class Board:
         Instance attributes:
         - 4 assigned via parameterization;
         - 2 derived from a parameter;
-        - 1 derived from another;
         - 2 assigned via methods.
         """
         self.size = size
@@ -37,8 +36,6 @@ class Board:
         self.map = [['□' for x in range(size)] for y in range(size)]
         self.columns_dictionary = dict(zip(ascii_uppercase, range(size)))
 
-        self.columns_string = '  ' + ' '.join(list(self.columns_dictionary))
-
         self.ships = []
         self.guesses = []
 
@@ -47,7 +44,7 @@ class Board:
         Map is printed by writing columns first.
         Then, each row number is followed by a map row.
         """
-        print(self.columns_string)
+        print('  ' + ' '.join(list(self.columns_dictionary)))
         row_number = 0
 
         for row in self.map:
@@ -66,18 +63,18 @@ class Board:
 
     def add_guess(self, row, column):
         """
-        It assigns the guesses list by appending tuples-based coordinates.
-        It then marks the map based on the match between an opponent guess
-        and the actual ship position. Finally, it returns an outcome.
+        It assigns the guesses list by appending tuples-based coordinates. It
+        then marks the map based on the match between an opponent guess and
+        the actual ship position. Finally, it returns an easy-to-read outcome.
         """
         self.guesses.append((row, column))
         self.map[row][column] = 'x'
 
         if (row, column) in self.ships:
             self.map[row][column] = '#'
-            return OUTCOMES[0]
+            return OUTCOMES['hit']
         else:
-            return OUTCOMES[1]
+            return OUTCOMES['miss']
 
 
 # Helper function returning a random integer between 0 and size:
@@ -123,13 +120,10 @@ def make_guess(instance):
             if validate_guess(row, column, instance):
                 break
 
-        player_result = instance.add_guess(
-            int(row), instance.columns_dictionary[column])
-
         print('-' * 34)
         print(f'You guessed: {(int(row), column)}')
 
-        if player_result == OUTCOMES[0]:
+        if instance.add_guess(int(row), instance.columns_dictionary[column]):
             print('You got a hit!')
             SCORES['player'] += 1
         else:
@@ -143,8 +137,6 @@ def make_guess(instance):
         while (row, column) in instance.guesses:
             row, column = randomize(instance.size), randomize(instance.size)
 
-        computer_result = instance.add_guess(row, column)
-
         # Ancillary variables:
         letters = list(instance.columns_dictionary.keys())
         numbers = list(instance.columns_dictionary.values())
@@ -153,7 +145,7 @@ def make_guess(instance):
         print('-' * 34)
         print(f'Computer guessed: {(row, letters[numbers.index(column)])}')
 
-        if computer_result == OUTCOMES[0]:
+        if instance.add_guess(row, column):
             print('Computer got a hit!')
             SCORES['computer'] += 1
         else:
