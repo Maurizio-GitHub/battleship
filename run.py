@@ -150,3 +150,35 @@ def make_guess(instance):
             SCORES['computer'] += 1
         else:
             print('Computer missed this time.')
+
+
+# Function validating user inputs; board-instance parameter is also needed:
+def validate_guess(row, column, instance):
+    """
+    It validates user inputs by parsing both rows and columns entered.
+    """
+    # Row/Integer validation block:
+    try:
+        int(row)
+        if int(row) not in range(instance.size):
+            raise ValueError(
+                f'Your shot has to target the battleground. '
+                f'Row {row} is not in the ocean')
+
+    except ValueError as e:
+        print(f'Invalid row entered: {e}. Please, try again!')
+        return False
+
+    # Column/String validation block:
+    if column not in list(instance.columns_dictionary):
+        print(
+            f'Invalid column entered. '
+            f'Column {column} in not in the ocean. Please, try again!')
+        return False
+
+    # Guess uniqueness validation block:
+    if (row, instance.columns_dictionary[column]) in instance.guesses:
+        print('Shooting on the same spot more than once? Please, try again!')
+        return False
+
+    return True
