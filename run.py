@@ -177,7 +177,7 @@ def validate_guess(row, column, instance):
         return False
 
     # Guess uniqueness validation block:
-    if (row, instance.columns_dictionary[column]) in instance.guesses:
+    if (int(row), instance.columns_dictionary[column]) in instance.guesses:
         print('Shooting on the same spot more than once? Please, try again!')
         return False
 
