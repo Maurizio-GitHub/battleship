@@ -241,3 +241,40 @@ def run_game(computer_board, player_board):
     # Running after a game over condition has been met:
     input('Press any key to start a new game: ')
     initialize_game()
+
+
+# Function starting new games:
+def initialize_game():
+    """
+    It resets points (player's, computer's), initializes boards,
+    calls the 'run_game()' function.
+    """
+    SCORES['computer'] = 0
+    SCORES['player'] = 0
+
+    # Size has been set to 5 because of the presence of 1x1 ships:
+    size = 5
+    fleet = 5
+
+    # Game presentation:
+    print('-' * 34)
+    print('Welcome to BATTLESHIP CHALLENGE!')
+    print(f'Board Size: {size} x {size}. Ships: {fleet} each.')
+    print('-' * 34)
+
+    player_name = input('Please, enter your name:\n')
+    print('-' * 34)
+
+    # Class instances:
+    computer_board = Board(size, fleet, 'Computer', owner='computer')
+    player_board = Board(size, fleet, player_name, owner='player')
+
+    # Function calls to create the fleets:
+    populate_map(computer_board)
+    populate_map(player_board)
+
+    # Function call to manage the game:
+    run_game(computer_board, player_board)
+
+
+initialize_game()
