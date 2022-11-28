@@ -182,3 +182,27 @@ def validate_guess(row, column, instance):
         return False
 
     return True
+
+
+# Function orchestrating the entire game logic:
+def run_game(computer_board, player_board):
+    """
+    It keeps looping its logic, by leveraging the 'make_guess()' function,
+    through all the turns needed to reach a game over condition.
+    """
+    while True:
+        print(f'{computer_board.name}'"'s Board:\n")
+        computer_board.print_map()
+        print(f'\n{player_board.name}'"'s Board:\n")
+        player_board.print_map()
+        print('-' * 34)
+
+        # Player guessing on computer's board:
+        make_guess(computer_board)
+        # Computer guessing on player's board:
+        make_guess(player_board)
+
+        winning_condition = all(
+            ship in computer_board.guesses for ship in computer_board.ships)
+        losing_condition = all(
+            ship in player_board.guesses for ship in player_board.ships)
