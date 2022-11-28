@@ -229,3 +229,15 @@ def run_game(computer_board, player_board):
                 '-',
                 f'{computer_board.name}:', SCORES['computer'])
             print('-' * 34)
+
+        # Reset and restart option, based on player choice:
+        choice = input(
+            'Enter any key to continue or "r" to reset and restart the game: ')
+        print('-' * 34)
+
+        if choice == 'r':
+            initialize_game()
+
+    # Running after a game over condition has been met:
+    input('Press any key to start a new game: ')
+    initialize_game()
