@@ -202,7 +202,30 @@ def run_game(computer_board, player_board):
         # Computer guessing on player's board:
         make_guess(player_board)
 
+        # Game over conditions:
         winning_condition = all(
             ship in computer_board.guesses for ship in computer_board.ships)
         losing_condition = all(
             ship in player_board.guesses for ship in player_board.ships)
+
+        # Possible turn outcomes:
+        if winning_condition is True and losing_condition is False:
+            print('-' * 34)
+            print('Congratulations! You won the battle!')
+            break
+        elif winning_condition is False and losing_condition is True:
+            print('-' * 34)
+            print('You have been defeated! You lost the battle!')
+            break
+        elif winning_condition is True and losing_condition is True:
+            print('-' * 34)
+            print('Both the fleets have been sunk! It is a draw!')
+            break
+        else:
+            print('-' * 34)
+            print('After this round, the scores are:')
+            print(
+                f'{player_board.name}:', SCORES['player'],
+                '-',
+                f'{computer_board.name}:', SCORES['computer'])
+            print('-' * 34)
