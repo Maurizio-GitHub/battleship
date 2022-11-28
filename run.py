@@ -114,7 +114,7 @@ def make_guess(instance):
             row = input(
                 f'Guess a row between 0 and {instance.size - 1}: ')
             column = input(
-                f'Guess a column between A and '
+                'Guess a column between A and '
                 f'{list(instance.columns_dictionary)[-1]}: ').upper()
 
             if validate_guess(row, column, instance):
@@ -160,19 +160,26 @@ def validate_guess(row, column, instance):
     # Row/Integer validation block:
     try:
         int(row)
-        if int(row) not in range(instance.size):
-            raise ValueError(
-                f'Your shot has to target the battleground. '
-                f'Row {row} is not in the ocean')
 
-    except ValueError as e:
-        print(f'Invalid row entered: {e}. Please, try again!')
+        if int(row) not in range(instance.size):
+            raise Exception(
+                'Invalid row entered: you have to target the enemy fleet. '
+                f'Row {row} is not in the ocean. Please, try again!')
+
+    except ValueError:
+        print(
+            'Invalid row entered: you have to enter a whole number. '
+            'Please, try again!')
+        return False
+
+    except Exception as e:
+        print(e)
         return False
 
     # Column/String validation block:
     if column not in list(instance.columns_dictionary):
         print(
-            f'Invalid column entered. '
+            'Invalid column entered: you have to target the enemy fleet. '
             f'Column {column} in not in the ocean. Please, try again!')
         return False
 
