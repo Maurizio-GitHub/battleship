@@ -8,6 +8,7 @@ from string import ascii_uppercase
 from random import randint
 
 # Global variables:
+DASHES = '-' * 33
 SCORES = {'computer': 0, 'player': 0}
 OUTCOMES = {'hit': True, 'miss': False}
 
@@ -120,7 +121,7 @@ def make_guess(instance):
             if validate_guess(row, column, instance):
                 break
 
-        print('-' * 34)
+        print(DASHES)
         print(f'You guessed: {(int(row), column)}')
 
         if instance.add_guess(int(row), instance.columns_dictionary[column]):
@@ -142,7 +143,7 @@ def make_guess(instance):
         numbers = list(instance.columns_dictionary.values())
         # Used in the following print-statement for better readability:
 
-        print('-' * 34)
+        print(DASHES)
         print(f'Computer guessed: {(row, letters[numbers.index(column)])}')
 
         if instance.add_guess(row, column):
@@ -202,7 +203,7 @@ def run_game(computer_board, player_board):
         computer_board.print_map()
         print(f'\n{player_board.name}'"'s Board:\n")
         player_board.print_map()
-        print('-' * 34)
+        print(DASHES)
 
         # Player guessing on computer's board:
         make_guess(computer_board)
@@ -217,30 +218,30 @@ def run_game(computer_board, player_board):
 
         # Possible turn outcomes:
         if winning_condition is True and losing_condition is False:
-            print('-' * 34)
+            print(DASHES)
             print('Congratulations! You won the battle!')
             break
         elif winning_condition is False and losing_condition is True:
-            print('-' * 34)
+            print(DASHES)
             print('You have been defeated! You lost the battle!')
             break
         elif winning_condition is True and losing_condition is True:
-            print('-' * 34)
+            print(DASHES)
             print('Both the fleets have been sunk! It is a draw!')
             break
         else:
-            print('-' * 34)
+            print(DASHES)
             print('After this round, the scores are:')
             print(
                 f'{player_board.name}:', SCORES['player'],
                 '-',
                 f'{computer_board.name}:', SCORES['computer'])
-            print('-' * 34)
+            print(DASHES)
 
         # Reset and restart option, based on player choice:
         choice = input(
             'Enter any key to continue or "r" to reset and restart the game: ')
-        print('-' * 34)
+        print(DASHES)
 
         if choice == 'r':
             initialize_game()
@@ -264,13 +265,13 @@ def initialize_game():
     fleet = 5
 
     # Game presentation:
-    print('-' * 34)
+    print(DASHES)
     print('Welcome to BATTLESHIP CHALLENGE!')
     print(f'Board Size: {size} x {size}. Ships: {fleet} each.')
-    print('-' * 34)
+    print(DASHES)
 
     player_name = input('Please, enter your name:\n')
-    print('-' * 34)
+    print(DASHES)
 
     # Class instances:
     computer_board = Board(size, fleet, 'Computer', owner='computer')
