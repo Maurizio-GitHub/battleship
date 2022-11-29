@@ -1,14 +1,15 @@
-# Battleship Challenge!
+# Battleship Challenge
 
-This is a very simple website, built to engage users with an enjoyable pastime: 'Rock, Paper, Scissors, Lizard, Spock?', the game invented by Sam Kass in 1998 that recently became super popular thanks to 'The Big Bang Theory' TV series!
+Battleship Challenge is a Python-terminal game running in the Code Institute mock terminal on Heroku.
+It represents a simplified version of the original game, as each battleship occupies one square on the board.
+This version of the game has been built with the aim to be involved in a funny exercise to familiarize with Object Oriented Programming.
+Users fight against the computer and, in order to win, need to find all of its battleships before it finds theirs.
 
-The site mainly targets people who typically are casual or regular pastime-consumers, like the ones who enjoy spending a few hours a week with solitaires and other similar games.
-
-![Responsiveness](/assets/media/responsiveness.png "Responsive Design")
+![Responsiveness](/assets/media/responsiveness.png "Responsive Design") CAMBIARE
 
 <br>
 
-[Live link to Rock, Paper, Scissors, Lizard, Spock?](https://maurizio-github.github.io/portfolio-project-2/)
+[Live link to Battleship Challenge](https://maurizio-github.github.io/portfolio-project-2/) CAMBIARE
 
 <br>
 
@@ -16,28 +17,41 @@ The site mainly targets people who typically are casual or regular pastime-consu
 
 <br>
 
-1. [Features](#features)
+1. [How to play](#how-to-play)
 
-2. [Testing](#testing)
+2. [Features](#features)
 
-3. [Validation](#validation)
+3. [Testing](#testing)
 
-4. [Bugs](#bugs)
+4. [Validation](#validation)
 
-5. [Deployment](#deployment)
+5. [Bugs](#bugs)
 
-6. [Credits](#credits)
+6. [Deployment](#deployment)
+
+7. [Credits](#credits)
 
 <br>
+
+## How to play
+
+<br>
+
+Battleship Challenge is based on the classic pen-and-paper game. More information about it can be found on [Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game)).
+In this version, players enter their name and two boards are randomly generated: one for each opponent.
+Players can see where their ships are, marked by a '■' sign, but obviously cannot see where the computer's ships are.
+Guesses can resukt in a 'miss', which is indicated on the boards with an 'x', or in a 'hit', which is marked by a '#'.
+The player and the computer then take it in turns to make guesses and try to sink each other's battleships.
+The winner is the one who sinks all of the opponent's battleships first.
 
 ## Features
 
 <br>
 
-- Simple header with a call to action
+- Random boards generation
 
-    - It welcomes the players with a neat sentence, immediately inviting them to act on the buttons (with visual feedback on hover) below it in order to start a new game:
-    ![Buttons](/assets/media/buttons.png "Buttons")
+    - Ships are randomly placed on both the player and computer boards (players cannot see where the computer's battleships are):
+    ![Buttons](/assets/media/buttons.png "Buttons") CAMBIARE
 
 <br>
 
