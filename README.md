@@ -1,15 +1,17 @@
 # Battleship Challenge
 
 Battleship Challenge is a Python-terminal game running in the Code Institute mock terminal on Heroku.
+
 It represents a simplified version of the original game, as each battleship occupies one square on the board.
 This version of the game has been built with the aim to be involved in a funny exercise to familiarize with Object Oriented Programming.
+
 Users fight against the computer and, in order to win, need to find all of its battleships before it finds theirs.
 
-![Responsiveness](/assets/media/responsiveness.png "Responsive Design") CAMBIARE
+![Responsiveness](/assets/media/responsiveness.png "Responsive Design")
 
 <br>
 
-[Live link to Battleship Challenge](https://maurizio-github.github.io/portfolio-project-2/) CAMBIARE
+[Live link to Battleship Challenge](https://maurizio-github.github.io/portfolio-project-2/)
 
 <br>
 
@@ -21,15 +23,17 @@ Users fight against the computer and, in order to win, need to find all of its b
 
 2. [Features](#features)
 
-3. [Testing](#testing)
+3. [Data Model](#data-model)
 
-4. [Validation](#validation)
+4. [Testing](#testing)
 
-5. [Bugs](#bugs)
+5. [Validation](#validation)
 
-6. [Deployment](#deployment)
+6. [Bugs](#bugs)
 
-7. [Credits](#credits)
+7. [Deployment](#deployment)
+
+8. [Credits](#credits)
 
 <br>
 
@@ -38,11 +42,18 @@ Users fight against the computer and, in order to win, need to find all of its b
 <br>
 
 Battleship Challenge is based on the classic pen-and-paper game. More information about it can be found on [Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game)).
-In this version, players enter their name and two boards are randomly generated: one for each opponent.
-Players can see where their ships are, marked by a '■' sign, but obviously cannot see where the computer's ships are.
-Guesses can resukt in a 'miss', which is indicated on the boards with an 'x', or in a 'hit', which is marked by a '#'.
-The player and the computer then take it in turns to make guesses and try to sink each other's battleships.
+
+In this version, players enter their name and two boards are randomly generated: one for each opponent. Players can see where their ships are, marked by a '■' sign, but obviously cannot see where the computer's ships are.
+
+Guesses can resukt in a 'miss', which is indicated on the boards with an 'x', or in a 'hit', which is marked by a '#'. The player and the computer then take it in turns to make guesses and try to sink each other's battleships.
+
 The winner is the one who sinks all of the opponent's battleships first.
+
+<br>
+
+[Back to Top](#table-of-contents)
+
+<br>
 
 ## Features
 
@@ -51,20 +62,21 @@ The winner is the one who sinks all of the opponent's battleships first.
 - Random boards generation
 
     - Ships are randomly placed on both the player and computer boards (players cannot see where the computer's battleships are):
-    ![Buttons](/assets/media/buttons.png "Buttons") CAMBIARE
+    ![Boards](/assets/media/boards-generation.png "Boards")
 
 <br>
 
-- Game area with scores and feedback messages
+- Acceptance of user inputs, scores management and reset & restart option
 
-    - Before a new game starts, this area provides players with a nice couple of pictures depicting the game rules. They just differ in their colours, in relation to player-side and computer-side respectively:
-    ![Game Rules](/assets/media/images-area.png "Game Rules")
-    - Once the game is running, pictures change to reflect player and computer choices, scores get updated based on game rules, moves left decrement accordingly and a feedback message appears to the bottom to clearly state who scored (i.e. who won):
-    ![Game Area](/assets/media/game-area.png "Game Area")
-    - After the 9 regular moves - if you got there - as it always depends on the total scores made during the game (whose winner must score 5 out of 9), in case of a draw (of course, regardless that the very last move ends up with a "Draw!", as in the case depicted below, or not), a tie-break phase starts. Just next to the counter saying that there are no moves left, a very clear feedback message warns about that:
-    ![Tie-Break](/assets/media/tie-break.png "Tie-Break")
-    - Tie-break phase goes on, possibly going through other draws, until one of the opponents scores and the game over condition is met. When this finally happens, one last message clearly stating who won the game is shown. The moves-buttons disappear and a restart button pops up (also this one with feedback on hover) to invite players to enter a new game:
-    ![Game Over](/assets/media/game-over.png "Game Over")
+    - In each turn, user inputs are properly processed. After any guess, a visual feedback is printed out to clearly show the current battle situation. A player can always leave and restart a new battle by pressing "r":
+    ![Turn Management](/assets/media/turns-management.png "Turn Management")
+
+<br>
+
+- Input validation and error checking
+
+    - Players can only enter integers for rows, cannot enter coordinates outside the board size and cannot enter the same guess more than once:
+    ![Input Validation](/assets/media/inputs-validation.png "Input Validation")
 
 <br>
 
@@ -72,14 +84,27 @@ The winner is the one who sinks all of the opponent's battleships first.
 
 <br>
 
+## Data model
+
+<br>
+
+A Board-class has been built as the game data model. Two instances of this class are created to hold the player's and the computer's board.
+
+The class stores the board size, the number of ships, the position of the ships, the guesses against that board, and other details such as the board owner (player or computer) and the player's name.
+
+The class also has methods to help play the game, such as a method to print out the current board, a method to add ships to the board and a method to add a guess and return the result.
+
+<br>
+
 ## Testing
 
 <br>
 
-- The website was successfully tested on different browsers: Chrome, Edge, Safari.
-- The website is responsive and looks good on different devices. Its functioning was successfully tested on all standard screen sizes by using Chrome DevTools as well as [Am I Responsive?](https://ui.dev/amiresponsive)
-- I confirmed that any single piece of text is readable, easy to understand and fully accessible.
-- I confirmed that the whole Javascript logic addressing the game rules and every possible outcome properly works.
+This game has been tested by doing the following:
+
+- Passed the code through a PEP8 linter and confirmed there are no problems;
+- Given invalid inputs, such as strings where numbers are expected, out of bounds inputs, same inputs multiple times;
+- Tested in a local terminal as well as the Code Institute Heroku terminal.
 
 <br>
 
@@ -91,28 +116,9 @@ The winner is the one who sinks all of the opponent's battleships first.
 
 <br>
 
-- HTML
+- PEP8
 
-    - No errors found via the official [W3C validator](https://validator.w3.org/#validate_by_input).
-
-<br>
-
-- CSS
-
-    - No errors found via the official [Jigsaw validator](https://jigsaw.w3.org/css-validator/#validate_by_input).
-
-<br>
-
-- Javascript
-
-    - No errors found via [JSHint](https://jshint.com/).
-
-<br>
-
-- Accessibility
-
-    - I confirmed that both colors and fonts chosen are easy to read and tested accessibility via Lighthouse, within Chrome DevTools:
-    ![Lighthouse](/assets/media/performance-lighthouse.png "Performance Analysis")
+    - No errors were returned by using 'pycodestyle'.
 
 <br>
 
@@ -126,7 +132,7 @@ The winner is the one who sinks all of the opponent's battleships first.
 
 - Fixed bugs
 
-    - There were some logic issues in properly handling the tie-break phase. Everything was fixed and retest after reviewing a few lines of JS code. Relevant comments have also been added to the code for reference.
+    - There were some unexpected behaviours due to the absence, in a few parts of the code, of explicit call to the int() method to properly convert user inputs. Everything was fixed by troubleshooting and retested.
 
 <br>
 
@@ -138,7 +144,8 @@ The winner is the one who sinks all of the opponent's battleships first.
 
 - Future developments
 
-    - Since it is just a simple game, with no need to capture user choices, any impression of 'overengineering' has been averted. Yet, it could still make sense to move the comparison logic used within the checkWinner() function to a data structure, i.e. an array of dictionaries, with each element representing everything we need to know about a specific move against any others.
+    - Having ships larger than 1x1 to properly reproduce the original game and, as a consequence, allowing players to position ships themselves and to select the board size (since, with 1x1 ships, a classic 10x10 grid would have been too dispersive at the moment).
+    - An additional feature, as a necessary consequence of the previous point, is providing computer with intelligence, since with long ships, when it starts hitting, its next guess cannot be random; it must be contiguous.
 
 <br>
 
@@ -150,15 +157,17 @@ The winner is the one who sinks all of the opponent's battleships first.
 
 <br>
 
-- The website was deployed to GitHub Pages through the following steps:
+- This project has been deployed using Code Institute's mock terminal for Heroku. Here are the steps followed for deployment:
 
-    - Navigation to the 'Setting' tab within the project repository;
-    - Selection of 'main' branch from the 'Branch' section dropdown menu;
-    - Confirmation by clicking on 'Save' to get the link to the website.
+    - Cloned this repository;
+    - Created a new Heroku app;
+    - Set the buildbacks to Python and NodeJS in that order;
+    - Linked the Heroku app to the repository;
+    - Clicked on **Deploy**.
 
 <br>
 
-The live link can be found here: [Rock, Paper, Scissors, Lizard, Spock?](https://maurizio-github.github.io/portfolio-project-2/).
+The live link can be found here: [Battleship Challenge](https://maurizio-github.github.io/portfolio-project-2/).
 
 <br>
 
@@ -170,15 +179,8 @@ The live link can be found here: [Rock, Paper, Scissors, Lizard, Spock?](https:/
 
 <br>
 
-- Content
-
-    - Ready-to-use code, making the very first part of the project, was taken and **properly adapted** from Coding Institute's [Love Maths](https://github.com/Code-Institute-Org/love-maths) project.
-
-<br>
-
-- Media
-
-    - Every image presented was taken from [ClipArtMax](https://www.clipartmax.com/), apart from the pictures representing the game rules, which were taken from the web.
+- Code Institute for the deployment terminal and a piece of code for setting the Board-class;
+- Wikipedia for the details of the original Battleship game.
 
 <br>
 
