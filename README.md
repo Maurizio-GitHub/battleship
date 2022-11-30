@@ -166,10 +166,11 @@ This game has been tested by doing the following:
 
 - This project has been deployed using Code Institute's mock terminal for Heroku. Here are the steps followed for deployment:
 
-    - Cloned this repository;
+    - Used CI's python-essentials-template to build this repository;
     - Created a new Heroku app;
     - Set the buildbacks to Python and NodeJS in that order;
-    - Linked the Heroku app to the repository;
+    - Linked the Heroku app to this repository;
+    - Synchronized this repository with the Heroku app;
     - Clicked on **Deploy**.
 
 <br>
@@ -186,8 +187,10 @@ The live link can be found here: [Battleship Challenge](https://maurizio-github.
 
 <br>
 
-- Code Institute for the deployment terminal and a piece of code for setting the Board-class;
-- Wikipedia for the details of the original Battleship game.
+- Code Institute:
+    - for the deployment terminal and a piece of code for setting the Board-class.
+- Wikipedia:
+    - for the details of the original Battleship game.
 
 <br>
 
