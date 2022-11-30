@@ -164,7 +164,7 @@ def validate_guess(row, column, instance):
 
         if int(row) not in range(instance.size):
             raise Exception(
-                'Invalid row entered: you have to target the enemy fleet. '
+                'Invalid row entered: you have to target the enemy fleet.\n'
                 f'Row {row} is not in the ocean. Please, try again!')
 
     except ValueError:
@@ -180,7 +180,7 @@ def validate_guess(row, column, instance):
     # Column/String validation block:
     if column not in list(instance.columns_dictionary):
         print(
-            'Invalid column entered: you have to target the enemy fleet. '
+            'Invalid column entered: you have to target the enemy fleet.\n'
             f'Column {column} in not in the ocean. Please, try again!')
         return False
 
