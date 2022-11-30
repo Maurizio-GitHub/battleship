@@ -11,7 +11,7 @@ Users fight against the computer and, in order to win, need to find all of its b
 
 <br>
 
-[Live link to Battleship Challenge](https://maurizio-github.github.io/portfolio-project-2/)
+[Live link to Battleship Challenge](https://python-terminal-battleship.herokuapp.com/)
 
 <br>
 
@@ -77,6 +77,13 @@ The winner is the one who sinks all of the opponent's battleships first.
 
     - Players can only enter integers for rows, cannot enter coordinates outside the board size and cannot enter the same guess more than once:
     ![Input Validation](/assets/media/inputs-validation.png "Input Validation")
+
+<br>
+
+- Game management with graphical feedback
+
+    - Round after round, the game goes on until a game over condition, which determines the winner, is triggered. According to the rules, however, a draw event has been implemented as well. The following image showcases a player winning a match:
+    ![Game Management](/assets/media/game-management.png "Game Management")
 
 <br>
 
