@@ -103,6 +103,10 @@ The class also has methods to help play the game, such as a method to print out 
 
 <br>
 
+[Back to Top](#table-of-contents)
+
+<br>
+
 ## Testing
 
 <br>
@@ -175,7 +179,7 @@ This game has been tested by doing the following:
 
 <br>
 
-The live link can be found here: [Battleship Challenge](https://maurizio-github.github.io/portfolio-project-2/).
+The live link can be found here: [Battleship Challenge](https://python-terminal-battleship.herokuapp.com/).
 
 <br>
 
